@@ -9,6 +9,8 @@
             double[] times = new double[10];
 
             for (int i = 0; i < 10; ++i) {
+            numsToSort = getListOfNums();
+            numsLength = numsToSort.Length;
             var watch = System.Diagnostics.Stopwatch.StartNew();
             qSort(numsToSort, 0, numsLength - 1);
             watch.Stop();
