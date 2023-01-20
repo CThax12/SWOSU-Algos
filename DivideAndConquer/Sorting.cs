@@ -1,7 +1,15 @@
+    using System;
+
     class Sorting {
 
     public static void Main(string[] args) { 
+        //Randomly generate list of numbers to sort
             int[] numsToSort = getListOfNums();
+            int numsLength = numsToSort.Length;
+
+            qSort(numsToSort, 0, numsLength - 1);
+
+
         }
 
         public static int[] getListOfNums() {
@@ -14,5 +22,19 @@
             return numsToSort;
 
         }
+
+        public static void qSort(int[] numsToSort, int low, int length) {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            QuickSort qs = new QuickSort();
+            qs.sort(numsToSort, 0, length);
+            watch.Stop();
+            foreach (var num in numsToSort)
+            {
+                Console.Write(num.ToString() + ", ");
+            }
+
+            Console.WriteLine("\n Quick sort took: " + watch.ElapsedMilliseconds);
+        }
+    
 
     }

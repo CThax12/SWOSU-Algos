@@ -1,5 +1,5 @@
-class QuickSort {
-    static int Partition(int[] numsToSort, int low, int high) {
+public class QuickSort {
+    public int Partition(int[] numsToSort, int low, int high) {
 
         //The first step of quick sort is to pick a pivot
 
@@ -27,12 +27,12 @@ class QuickSort {
 
     }
 
-    static void QuickSort(int[] numsToSort, int low, int high) {
+    public void sort(int[] numsToSort, int low, int high) {
         if (low < high) {
             int partitionIndex = Partition(numsToSort, low, high);
 
-            QuickSort(numsToSort, low, partitionIndex - 1);
-            QuickSort(numsToSort, partitionIndex + 1, high);
+            sort(numsToSort, low, partitionIndex - 1);
+            sort(numsToSort, partitionIndex + 1, high);
         }
     }
 
