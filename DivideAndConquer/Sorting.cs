@@ -40,7 +40,7 @@
             Random rand = new Random();
             int[] numsToSort = new int[10000];
             for (int i = 0; i < numsToSort.Length; ++i) {
-                numsToSort[i] = rand.Next(10000);
+                numsToSort[i] = rand.Next(100000);
             }
 
             return numsToSort;
@@ -78,7 +78,10 @@
             }
 
             double average = sum/10;
+            double highest = times.Max();
             Console.WriteLine("\n\nAverage Quick Sort time in ms: " + average);
+            Console.WriteLine("\nLongest Quick Sort time in ms: " + highest);
+
 
         }
 
@@ -90,7 +93,9 @@
             }
 
             double average = sum/10;
+            double highest = times.Max();
             Console.WriteLine("\n\nAverage Merge Sort time in ms: " + average);
+            Console.WriteLine("\nLongest Merge Sort time in ms: " + highest);
 
         }
     
