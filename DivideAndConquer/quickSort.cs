@@ -32,7 +32,7 @@ public class QuickSort {
             int partitionIndex = Partition(numsToSort, low, high);
 
             sort(numsToSort, low, partitionIndex - 1);
-            sort(numsToSort, partitionIndex + 1, high);
+            sort(numsToSort, partitionIndex + 1, high); 
         }
     }
 
