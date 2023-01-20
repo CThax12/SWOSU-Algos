@@ -6,18 +6,33 @@
         //Randomly generate list of numbers to sort
             int[] numsToSort = getListOfNums();
             int numsLength = numsToSort.Length;
-            double[] times = new double[10];
+            double[] qsTimes = new double[10];
+            double[] msTimes = new double[10];
 
             for (int i = 0; i < 10; ++i) {
+            //generate new list of random numbers
             numsToSort = getListOfNums();
             numsLength = numsToSort.Length;
+
+            //time how long quick sort takes
             var watch = System.Diagnostics.Stopwatch.StartNew();
             qSort(numsToSort, 0, numsLength - 1);
             watch.Stop();
-            times[i] = watch.Elapsed.TotalMilliseconds;
+            qsTimes[i] = watch.Elapsed.TotalMilliseconds;
+
+            watch.Reset();
+
+            //time how long merge sort takes
+            watch = System.Diagnostics.Stopwatch.StartNew();
+            mSort(numsToSort, 0, numsLength - 1);
+            watch.Stop();
+            msTimes[i] = watch.Elapsed.TotalMilliseconds;
+
+            
             }
 
-            getQSAvgTime(times);
+            getQSAvgTime(qsTimes);
+            getMSAvgTime(msTimes);   
 
         }
 
@@ -44,6 +59,17 @@
 
         }
 
+        public static void mSort(int[] numsToSort, int low, int length) {
+            MergeSort ms = new MergeSort();
+            ms.mSort(numsToSort, 0, length - 1);
+            Console.WriteLine("\n");
+            foreach (var num in numsToSort)
+            {
+                Console.Write(num.ToString() + ", ");
+            }
+
+        }
+
         public static void getQSAvgTime(double[] times) {
             double sum = 0.0;
 
@@ -53,6 +79,18 @@
 
             double average = sum/10;
             Console.WriteLine("\n\nAverage Quick Sort time in ms: " + average);
+
+        }
+
+        public static void getMSAvgTime(double[] times) {
+            double sum = 0.0;
+
+            foreach (double time in times) {
+                sum += time;
+            }
+
+            double average = sum/10;
+            Console.WriteLine("\n\nAverage Merge Sort time in ms: " + average);
 
         }
     

@@ -1,31 +1,51 @@
-class MergeSort {
+public class MergeSort {
+    
+    public int[] mSort(int[] numsToSort, int left, int right) {
+        if (left < right) {
+            int middle = left + (right - left) / 2;
+
+            //sort right side
+            mSort(numsToSort, left, middle);
+
+            //sort left side
+            mSort(numsToSort, middle + 1, right);
+
+            //merge together
+            Merge(numsToSort, left, middle, right);
+
+        }
+
+        return numsToSort;
+        
+    }
+    
     public void Merge(int[] numsToSort, int left, int middle, int right) {
         //pointers to keep track of where we are at
         int i, j, k;
 
         //get lengths of sub arrays to make code simpler later
-        int leftLength = middle-left;
-        int rightLength = right - middle + 1;
+        int leftLength = middle-left + 1;
+        int rightLength = right - middle;
 
         //create first two sub arrays
         int[] leftNums = new int[leftLength];
         int[] rightNums = new int[rightLength];
 
-        for (i = 0; i < leftLength; i++) {
+        for (i = 0; i < leftLength; ++i) {
             leftNums[i] = numsToSort[left + i];
         }
-        for (i = 0; i < rightLength; i++) {
-            rightNums[i] = numsToSort[middle + i];
+        for (j = 0; j < rightLength; ++j) {
+            rightNums[j] = numsToSort[middle + 1 + j];
         }
 
         i = 0;
         j = 0;
-        k = 1;
+        k = left;
 
         //check if number on left side is smaller than right side
         //if so, we know it is on the correct side, otherwise we move
         //and increment pointers to move further along
-        while (i < rightLength && j < rightLength)
+        while (i < leftLength && j < rightLength)
         {
             if (leftNums[i] <= rightNums[j]) {
                 numsToSort[k++] = leftNums[i++];
@@ -37,17 +57,12 @@ class MergeSort {
 
         //check if left side is finished, if so copy from the right array
 
-        if (i == leftLength) {
-            for (int a = 0; a < rightLength; a++) {
-                numsToSort[k++] = rightNums[a];
-            }
-
+        while (i < leftLength) {
+            numsToSort[k++] = leftNums[i++];
         }
-        //do same process for right side
-         if (j == rightLength) {
-            for (int a = 0; a < rightLength; a++) {
-                numsToSort[k++] = leftNums[a];
-            }
+        while (j < rightLength) {
+            numsToSort[k++] = rightNums[j++];
+        }
 
         }
 
@@ -55,4 +70,3 @@ class MergeSort {
 
 
     }
-}
