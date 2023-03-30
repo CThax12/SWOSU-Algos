@@ -17,8 +17,8 @@ public class Recursion {
  
      public void test()
     {
-        int n = 30;
-        int k = 5;
+        int n = 50;
+        int k = 7;
         Console.Write("Value of C(" + n + "," + k + ") using DC is " + recursiveBC(n, k));
 
         DP dp = new DP();
